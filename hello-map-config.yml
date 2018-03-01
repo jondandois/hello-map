@@ -1,4 +1,4 @@
-basemap:
+map_init:
   center:
     lat: 39.209272
     lng: -76.797118
@@ -6,4 +6,5 @@ basemap:
   maxzoom: 18
   url: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
   attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-
+tile_image:
+  image_path: 'examples/oblique_aerial_image.tif'

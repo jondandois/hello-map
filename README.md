@@ -19,7 +19,8 @@ To generate the template webmap, simply run:
 ```
 This will create a new landing page at `app/index.html`. Simply open this file in a browser or point your http server folder to the `app/` folder.
 
-
+### Attributions
+The example image `examples/oblique_aerial_image.tif` is included by permission of its owner, me, [Jonathan Dandois](https://github.com/jondandois).
 
 ### License
 Hello,Map! is licensed under GNU GPL3.0. A copy of that license is distributed with this software.

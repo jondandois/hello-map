@@ -1,16 +1,13 @@
 import os
-import yaml
+import config
 import javascript_snippets as js_snippets
+config = config.config
 
 # configure the workspace env
 ws_dirs = ['./app']
 for ws_dir in ws_dirs:
   if not os.path.exists(ws_dir):
     os.makedirs(ws_dir)
-
-# read in the basemap config
-with open(os.path.join(os.getcwd(), 'hello-map-config.yml'), 'r') as f:
-  config = yaml.load(f.read())
 
 # read in the index.html.template
 with open(os.path.join(os.getcwd(), 'templates', 'index.html.template'), 'r') as f:
@@ -24,7 +21,7 @@ index_html = index_html.replace('$cdns', cdns)
 
 # add scripts
 scripts = ''
-scripts += js_snippets.leaflet_init(config['basemap'])
+scripts += js_snippets.leaflet_init(config['map_init'])
 index_html = index_html.replace('$scripts', scripts)
 
 # write to app folder
