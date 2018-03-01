@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello, Map!</title>
+    $cdns
     <style>
       #map {
         height: 100%;
@@ -16,8 +17,9 @@
     </style>
   </head>
   <body>
-    <div id="map">Hello, Map!</div>
+    <div id="map"></div>
     <script>
+      $scripts
     </script>
   </body>
 </html>
