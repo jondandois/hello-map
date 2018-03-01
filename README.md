@@ -3,6 +3,7 @@ Hello,Map! is a generator for the most basic framework of a web-based map, inclu
 
 ## Requirements
   - Python 3
+  - [Pillow Python Imaging Library](https://pypi.python.org/pypi/Pillow/3.0.0)
   - simple local web server for testing (e.g., [http-server](https://www.npmjs.com/package/http-server))
 
 ## Usage
