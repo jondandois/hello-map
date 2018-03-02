@@ -6,18 +6,28 @@ map_init:
   minzoom: 1
   maxzoom: 4
   url: './tiles/{z}/{x}/{y}.png'
+  # url: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
   attribution: '&copy;'
   nowrap: true
 tile_image:
   tile_size: 256
   image_path: 'examples/oblique_aerial_image.tif'
 markers:
-  - x: 500
-    y: 100
-    type: building
-  - x: 100
-    y: 200
-    type: tree
-  - x: 1700
-    y: 1000
-    type: tree
+  - x: 2286
+    y: 1546
+    type: playground
+  - x: 1330
+    y: 382
+    type: pool
+  - x: 0
+    y: 0
+    type: upper left
+  - x: 0
+    y: 2070
+    type: lower left
+  - x: 3306
+    y: 0
+    type: upper right
+  - x: 3306
+    y: 2070
+    type: lower right

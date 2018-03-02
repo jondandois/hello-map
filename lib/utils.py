@@ -42,13 +42,8 @@ def open_image(image_path):
   Compute the longitude from a marker image coordinate
 '''
 def marker_x_to_lng(marker_x, image_width):
-  marker_x_pos = marker_x/image_width
-  if marker_x_pos == 0.5:
-    marker_lng = 0
-  elif marker_x_pos < 0.5:
-    marker_lng = (180 * marker_x_pos) - 180
-  else:
-    marker_lng = 180 * marker_x_pos
+  marker_x_pos = marker_x / image_width
+  marker_lng = (marker_x_pos * 360) - 180
   return marker_lng
 
 '''
@@ -56,13 +51,11 @@ def marker_x_to_lng(marker_x, image_width):
 '''
 def marker_y_to_lat(marker_y, image_height):
   import math
-  marker_y_pos = marker_y/image_height
   y_max = math.degrees(math.atan(math.sinh(math.pi)))
-  if marker_y_pos == 0.5:
-    marker_lat = 0
-  elif marker_y_pos < 0.5:
-    marker_lat = (y_max * marker_y_pos) - y_max
-  else:
-    marker_lat = -(y_max * marker_y_pos)
-  return marker_lat
+  y_range = y_max * 2
 
+  print(y_max, y_range)
+  marker_y_pos = marker_y / image_height
+  print (marker_y, marker_y_pos)
+  marker_lat = ((marker_y_pos * y_range) - y_max) * -1
+  return marker_lat

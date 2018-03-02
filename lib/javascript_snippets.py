@@ -31,3 +31,13 @@ def leaflet_init(map_config):
       attribution: '%s'
     }).addTo(map);
   """%(lat, lng, zoom, url, nowrap, minzoom, maxzoom, attribution)
+
+
+def leaflet_marker(marker_options):
+  lat = marker_options['lat']
+  lng = marker_options['lng']
+  popup_text = marker_options['popup_text'] or ''
+  return """
+    // add a marker
+    L.marker([%f, %f]).addTo(map).bindPopup(%s);
+  """%(lat, lng, popup_text)

@@ -22,16 +22,20 @@ index_html = index_html.replace('$cdns', cdns)
 # add scripts
 scripts = ''
 scripts += js_snippets.leaflet_init(config['map_init'])
-index_html = index_html.replace('$scripts', scripts)
 
 markers = config['markers']
 width, height = image.size
-for marker in markers:
-  marker_lng = utils.marker_x_to_lng(marker['x'], width)
-  print(marker['x'], marker_lng)
-  marker_lat = utils.marker_y_to_lat(marker['y'], height)
-  print(marker['y'], marker_lat)
+if markers:
+  for marker in markers:
+    marker_lng = utils.marker_x_to_lng(marker['x'], width)
+    marker_lat = utils.marker_y_to_lat(marker['y'], width)
+    scripts += js_snippets.leaflet_marker({
+      'lat': marker_lat,
+      'lng': marker_lng,
+      'popup_text': "'%s:</br>x: %u, y:%u</br>lat: %.6f, lng: %.6f'"%(marker['type'], marker['x'], marker['y'], marker_lat, marker_lng)
+      })
 
+index_html = index_html.replace('$scripts', scripts)
 
 # write to app folder
 index_html_out = os.path.join(os.getcwd(), 'app', 'index.html')
