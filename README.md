@@ -32,8 +32,6 @@ This will create a new landing page at `app/index.html`. Simply open this file i
 ### Attributions
 The example image `examples/oblique_aerial_image.tif` is included by permission of its owner, me, [Jonathan Dandois](https://github.com/jondandois).
 
-The example image `examples/earthrender_square.png` is from https://commons.wikimedia.org/wiki/File%3AEarthRender_(square).png, attribution: By Original: Tesseract2 Derivative work: Albin Olsson (This file was derived from:  EarthRender.png) [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons
-
 ### License
 Hello,Map! is licensed under GNU GPL3.0. A copy of that license is distributed with this software.
 

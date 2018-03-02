@@ -11,6 +11,7 @@ def leaflet_init(map_config):
   lat = utils.deep_get(map_config, ['center', 'lat'], 0)
   lng = utils.deep_get(map_config, ['center', 'lng'], 0)
   zoom = utils.deep_get(map_config, ['zoom'], 5)
+  nowrap = utils.deep_get(map_config, ['nowrap'], True)
   minzoom = utils.deep_get(map_config, ['minzoom'], 18)
   maxzoom = utils.deep_get(map_config, ['maxzoom'], 18)
   attribution = utils.deep_get(map_config, ['attribution'], '')
@@ -24,8 +25,9 @@ def leaflet_init(map_config):
     });
     // add a base map
     let OpenStreetMap_BlackAndWhite = L.tileLayer('%s', {
+      noWrap: %u,
       minZoom: %u,
       maxZoom: %u,
       attribution: '%s'
     }).addTo(map);
-  """%(lat, lng, zoom, url, minzoom, maxzoom, attribution)
+  """%(lat, lng, zoom, url, nowrap, minzoom, maxzoom, attribution)

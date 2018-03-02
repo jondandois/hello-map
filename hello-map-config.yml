@@ -5,10 +5,9 @@ map_init:
   zoom: 1
   minzoom: 1
   maxzoom: 4
-  # url: 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'
   url: './tiles/{z}/{x}/{y}.png'
-  # attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   attribution: '&copy;'
+  nowrap: true
 tile_image:
   tile_size: 256
   image_path: 'examples/oblique_aerial_image.tif'
