@@ -1,13 +1,12 @@
 import os
 import config
 import javascript_snippets as js_snippets
+import utils as utils
 config = config.config
 
 # configure the workspace env
 ws_dirs = ['./app']
-for ws_dir in ws_dirs:
-  if not os.path.exists(ws_dir):
-    os.makedirs(ws_dir)
+[utils.make_dirs_if_not(ws_dir) for ws_dir in ws_dirs]
 
 # read in the index.html.template
 with open(os.path.join(os.getcwd(), 'templates', 'index.html.template'), 'r') as f:

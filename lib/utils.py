@@ -12,3 +12,11 @@ def deep_get(_dict, keys, default=None):
       else:
           return default
   return _dict
+
+'''
+  Make a directory if it does not already exist
+'''
+def make_dirs_if_not(in_dir):
+  import os
+  if not os.path.exists(in_dir):
+    os.makedirs(in_dir)
