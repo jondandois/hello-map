@@ -2,7 +2,6 @@ import os
 import math
 from shutil import copyfile
 import numpy as np
-from PIL import Image
 import utils as utils
 import config
 
@@ -22,13 +21,7 @@ def resize_dims(width, height, dim):
 # get config
 config = config.config
 
-try:
-  image_path = os.path.join(os.getcwd(), utils.deep_get(config, ['tile_image', 'image_path'], None))
-  image = Image.open(image_path)
-  print('Sucessfully read in image\n')
-except:
-  print('Image could not be found or read, exiting')
-  exit(1)
+image = utils.open_image(utils.deep_get(config, ['tile_image', 'image_path'], None))
 
 #
 tile_size = utils.deep_get(config, ['tile_image', 'tile_size'], 256)

@@ -7,6 +7,7 @@ config = config.config
 # configure the workspace env
 ws_dirs = ['./app']
 [utils.make_dirs_if_not(ws_dir) for ws_dir in ws_dirs]
+image = utils.open_image(utils.deep_get(config, ['tile_image', 'image_path'], None))
 
 # read in the index.html.template
 with open(os.path.join(os.getcwd(), 'templates', 'index.html.template'), 'r') as f:
@@ -22,6 +23,15 @@ index_html = index_html.replace('$cdns', cdns)
 scripts = ''
 scripts += js_snippets.leaflet_init(config['map_init'])
 index_html = index_html.replace('$scripts', scripts)
+
+markers = config['markers']
+width, height = image.size
+for marker in markers:
+  marker_lng = utils.marker_x_to_lng(marker['x'], width)
+  print(marker['x'], marker_lng)
+  marker_lat = utils.marker_y_to_lat(marker['y'], height)
+  print(marker['y'], marker_lat)
+
 
 # write to app folder
 index_html_out = os.path.join(os.getcwd(), 'app', 'index.html')

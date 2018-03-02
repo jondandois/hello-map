@@ -27,7 +27,11 @@ To generate the template webmap, simply run:
 ```shell
   python lib/build_webmap.py
 ```
-This will create a new landing page at `app/index.html`. Simply open this file in a browser or point your http server folder to the `app/` folder.
+This will create a new landing page at `app/index.html`.
+
+### Running app
+Point your http server folder to the `app/` folder and open in browser. If using *http_server*, this is just `http-server ./app/`.
+
 
 ### Attributions
 The example image `examples/oblique_aerial_image.tif` is included by permission of its owner, me, [Jonathan Dandois](https://github.com/jondandois).

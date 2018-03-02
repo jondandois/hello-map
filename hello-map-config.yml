@@ -11,3 +11,13 @@ map_init:
 tile_image:
   tile_size: 256
   image_path: 'examples/oblique_aerial_image.tif'
+markers:
+  - x: 500
+    y: 100
+    type: building
+  - x: 100
+    y: 200
+    type: tree
+  - x: 1700
+    y: 1000
+    type: tree
