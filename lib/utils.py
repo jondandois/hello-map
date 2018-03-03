@@ -51,11 +51,43 @@ def marker_x_to_lng(marker_x, image_width):
 '''
 def marker_y_to_lat(marker_y, image_height):
   import math
-  y_max = math.degrees(math.atan(math.sinh(math.pi)))
-  y_range = y_max * 2
 
-  print(y_max, y_range)
+  # get marker position relative to web mercator size
   marker_y_pos = marker_y / image_height
-  print (marker_y, marker_y_pos)
-  marker_lat = ((marker_y_pos * y_range) - y_max) * -1
+  mercator_y_top = 20037508.34
+  mercator_y_range = mercator_y_top * 2
+  marker_y_mercator = ((marker_y_pos * mercator_y_range) - mercator_y_top) * -1
+
+  # convert this to latitude via ellipitcal projection
+  marker_lat = merc_2_lat(marker_y_mercator)
   return marker_lat
+
+
+# adapted from proj.4 https://github.com/OSGeo/proj.4/blob/master/src/pj_phi2.c
+def merc_2_lat(merc_y):
+  import math
+  r_major = 6378137.0 # Equatorial Radius, WGS84
+  r_minor = 6356752.314245179 # defined as constant
+  temp_r = r_minor / r_major
+  e = math.sqrt(1.0 - temp_r**2) # eccentricity of earth ellipse
+
+  lat = math.degrees(pj_phi2( math.exp( 0-(merc_y/r_major)), e))
+  return lat
+
+# adapted from proj.4 https://github.com/OSGeo/proj.4/blob/master/src/pj_phi2.c
+def pj_phi2(ts, e):
+  import math
+  n_iter = 15
+  half_pi= math.pi/2
+
+  tol = 0.0000000001
+  eccnth = 0.5 * e
+  phi = half_pi - 2.0 * math.atan(ts)
+  dphi = 1
+  i = 1
+  while abs(dphi) > tol and i < n_iter:
+    con = e * math.sin(phi)
+    dphi = half_pi - 2.0 * math.atan(ts * math.pow((1. - con) / (1. + con), eccnth)) - phi
+    phi += dphi
+    i += 1
+  return phi;

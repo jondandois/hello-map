@@ -19,15 +19,3 @@ markers:
   - x: 1330
     y: 382
     type: pool
-  - x: 0
-    y: 0
-    type: upper left
-  - x: 0
-    y: 2070
-    type: lower left
-  - x: 3306
-    y: 0
-    type: upper right
-  - x: 3306
-    y: 2070
-    type: lower right
