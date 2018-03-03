@@ -63,7 +63,7 @@ def marker_y_to_lat(marker_y, image_height):
   return marker_lat
 
 
-# adapted from proj.4 https://github.com/OSGeo/proj.4/blob/master/src/pj_phi2.c
+# adapted from https://wiki.openstreetmap.org/wiki/Mercator#JavaScript_.28or_ActionScript.29_implementation
 def merc_2_lat(merc_y):
   import math
   r_major = 6378137.0 # Equatorial Radius, WGS84
@@ -74,7 +74,7 @@ def merc_2_lat(merc_y):
   lat = math.degrees(pj_phi2( math.exp( 0-(merc_y/r_major)), e))
   return lat
 
-# adapted from proj.4 https://github.com/OSGeo/proj.4/blob/master/src/pj_phi2.c
+# adapted from https://wiki.openstreetmap.org/wiki/Mercator#JavaScript_.28or_ActionScript.29_implementation
 def pj_phi2(ts, e):
   import math
   n_iter = 15
