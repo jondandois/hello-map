@@ -1,2 +1,4 @@
 # ignore the app/ folder
 app/
+
+lib/__pycache__
