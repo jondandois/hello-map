@@ -1,4 +1,7 @@
 /*legend*/
+.legend-title {
+  margin: 1vh;
+}
 .info {
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
@@ -7,7 +10,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .legend {
@@ -30,7 +33,7 @@
 }
 
 .legend-item {
-  display: table-cell;
+  display: flex;
 }
 .legend-item .label{
   font: 14px/16px Arial, Helvetica, sans-serif !important;
@@ -41,6 +44,43 @@
   padding: 2px;
 }
 
+.icon-pool {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../assets/jellyfish-svgrepo-com.svg);
+  background-size: 20px;
+}
+
+.icon-playground {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../assets/fish-svgrepo-com.svg);
+  background-size: 20px;
+}
+
+.icon-building {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../assets/lobster-svgrepo-com.svg);
+  background-size: 20px;
+}
+.icon-car {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../assets/octopus-svgrepo-com.svg);
+  background-size: 20px;
+}
+.icon-tree {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(../assets/shark-svgrepo-com.svg);
+  background-size: 20px;
+}
 /*markers*/
 .leaflet-marker-icon {
   background: white;

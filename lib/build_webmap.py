@@ -44,6 +44,7 @@ if markers:
     marker_lng = utils.marker_x_to_lng(marker['x'], width)
     marker_lat = utils.marker_y_to_lat(marker['y'], width)
     scripts += js_snippets.leaflet_marker({
+      'type': marker['type'],
       'icon': config['legend'][marker['type']]['icon'],
       'lat': marker_lat,
       'lng': marker_lng,

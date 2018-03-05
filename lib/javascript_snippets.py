@@ -18,6 +18,12 @@ def leaflet_init(map_config):
   url = utils.deep_get(map_config, ['url'], '')
 
   return """
+    // marker Click callback
+    var onMarkerClick = function (ev) {
+      var marker = ev.target;
+      console.log('Clicked: ', marker.options.marker_type);
+    };
+
     // build the map
     let map = L.map('map', {
       center: [%f, %f],
@@ -34,8 +40,8 @@ def leaflet_init(map_config):
 
 
 def leaflet_marker(marker_options):
+  marker_type = marker_options['type']
   icon = marker_options['icon']
-  print(icon)
   lat = marker_options['lat']
   lng = marker_options['lng']
   popup_text = marker_options['popup_text'] or ''
@@ -50,10 +56,11 @@ def leaflet_marker(marker_options):
     });
 
     // add a marker
-    L.marker([%f, %f],{icon: icon})
+    L.marker([%f, %f],{icon: icon, marker_type: '%s'})
       .bindPopup(%s)
+      .on('click', onMarkerClick)
       .addTo(map);
-  """%(marker_svg, lat, lng, popup_text)
+  """%(marker_svg, lat, lng, marker_type, popup_text)
 
 
 def leaflet_init_legend(legend_items):
@@ -61,19 +68,30 @@ def leaflet_init_legend(legend_items):
   legend = ""
   if (n_items > 0):
     legend = """
-      var legend = L.control({position: 'bottomright'});
-      legend.onAdd = function (map) {
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info legend');
+      var legend_html = '';
 
-        var div = L.DomUtil.create('div', 'info legend');
-        var legend_html = '';
+      legend_html += '<section>';
+      legend_html += '<div><h3 class="legend-title">Legend</h3></div>';
+    """
 
-        legend_html += '<section>';
-        legend_html += '<div><h3>Legend</h3></div>';
-        legend_html += '</section>';
+    item_array = (', ').join(["'%s'"%item for item in legend_items])
+    item_array = '[%s]'%item_array
+    legend +=  """
+      %s.map( (item) => {
+        legend_html += `<div class="legend-item"><input value="${item}" type="checkbox" checked>`;
+        legend_html += `<span class="icon-${item}"></span>&nbsp<span class="label">${item}</span></div>`;
+      });
+    """%(item_array)
 
-        div.innerHTML = legend_html;
-        return div;
-      }
-      legend.addTo(map);
+    legend += """
+      legend_html += '</section>';
+
+      div.innerHTML = legend_html;
+      return div;
+    }
+    legend.addTo(map);
     """
   return legend
