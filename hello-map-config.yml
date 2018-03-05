@@ -19,3 +19,27 @@ markers:
   - x: 1330
     y: 382
     type: pool
+  - x: 2480
+    y: 1248
+    type: building
+  - x: 2636
+    y: 1900
+    type: tree
+  - x: 842
+    y: 753
+    type: car
+  - x: 2905
+    y: 1692
+    type: car
+  - x: 2411
+    y: 606
+    type: tree
+  - x: 727
+    y: 1651
+    type: tree
+legend:
+  - type: pool
+  - type: playground
+  - type: building
+  - type: car
+  - type: tree

@@ -1,6 +1,5 @@
 import os
 import math
-from shutil import copyfile
 import numpy as np
 import utils as utils
 import config

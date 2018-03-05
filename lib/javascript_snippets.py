@@ -41,3 +41,25 @@ def leaflet_marker(marker_options):
     // add a marker
     L.marker([%f, %f]).addTo(map).bindPopup(%s);
   """%(lat, lng, popup_text)
+
+def leaflet_init_legend(legend_items):
+  n_items = len(legend_items)
+  legend = ""
+  if (n_items > 0):
+    legend = """
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create('div', 'info legend');
+        var legend_html = '';
+
+        legend_html += '<section>';
+        legend_html += '<div><h3>Legend</h3></div>';
+        legend_html += '</section>';
+
+        div.innerHTML = legend_html;
+        return div;
+      }
+      legend.addTo(map);
+    """
+  return legend

@@ -1,11 +1,12 @@
 import os
+from shutil import copyfile
 import config
 import javascript_snippets as js_snippets
 import utils as utils
 config = config.config
 
 # configure the workspace env
-ws_dirs = ['./app']
+ws_dirs = ['./app', './app/css/', './app/tiles/']
 [utils.make_dirs_if_not(ws_dir) for ws_dir in ws_dirs]
 image = utils.open_image(utils.deep_get(config, ['tile_image', 'image_path'], None))
 
@@ -14,6 +15,11 @@ with open(os.path.join(os.getcwd(), 'templates', 'index.html.template'), 'r') as
   index_html = f.read()
 f.closed
 
+# copy over css
+example_css = os.path.join(os.getcwd(), 'examples', 'css', 'main.css')
+main_css = os.path.join(os.getcwd(), 'app', 'css', 'main.css')
+copyfile(example_css, main_css)
+
 # add any cdns
 cdns = ''
 cdns += js_snippets.leaflet_cdns()
@@ -21,8 +27,11 @@ index_html = index_html.replace('$cdns', cdns)
 
 # add scripts
 scripts = ''
+
+# initialize leaflet
 scripts += js_snippets.leaflet_init(config['map_init'])
 
+# draw in markers
 markers = config['markers']
 width, height = image.size
 if markers:
@@ -32,8 +41,11 @@ if markers:
     scripts += js_snippets.leaflet_marker({
       'lat': marker_lat,
       'lng': marker_lng,
-      'popup_text': "'%s:</br>x: %u, y:%u</br>lat: %.6f, lng: %.6f'"%(marker['type'], marker['x'], marker['y'], marker_lat, marker_lng)
+      'popup_text': "'%s:</br>x: %u, y:%u</br>'"%(marker['type'], marker['x'], marker['y'])
       })
+
+# add the legend
+scripts += js_snippets.leaflet_init_legend(config['legend'])
 
 index_html = index_html.replace('$scripts', scripts)
 
