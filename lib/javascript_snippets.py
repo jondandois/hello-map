@@ -34,13 +34,27 @@ def leaflet_init(map_config):
 
 
 def leaflet_marker(marker_options):
+  icon = marker_options['icon']
+  print(icon)
   lat = marker_options['lat']
   lng = marker_options['lng']
   popup_text = marker_options['popup_text'] or ''
+  marker_svg = './assets/%s'%icon
   return """
+    // define a new marker
+    icon = L.icon({
+      iconUrl: '%s',
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -30],
+    });
+
     // add a marker
-    L.marker([%f, %f]).addTo(map).bindPopup(%s);
-  """%(lat, lng, popup_text)
+    L.marker([%f, %f],{icon: icon})
+      .bindPopup(%s)
+      .addTo(map);
+  """%(marker_svg, lat, lng, popup_text)
+
 
 def leaflet_init_legend(legend_items):
   n_items = len(legend_items)

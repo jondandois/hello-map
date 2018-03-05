@@ -38,8 +38,13 @@ markers:
     y: 1651
     type: tree
 legend:
-  - type: pool
-  - type: playground
-  - type: building
-  - type: car
-  - type: tree
+  pool:
+    icon: jellyfish-svgrepo-com.svg
+  playground:
+    icon: fish-svgrepo-com.svg
+  building:
+    icon: lobster-svgrepo-com.svg
+  car:
+    icon: octopus-svgrepo-com.svg
+  tree:
+    icon: shark-svgrepo-com.svg

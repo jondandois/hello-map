@@ -1,3 +1,4 @@
+/*legend*/
 .info {
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
@@ -38,4 +39,11 @@
 
 .legend-item .fa {
   padding: 2px;
+}
+
+/*markers*/
+.leaflet-marker-icon {
+  background: white;
+  border-radius: 20px;
+  opacity: 0.9;
 }

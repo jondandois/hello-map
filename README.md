@@ -34,3 +34,5 @@ Point your http server folder to the `app/` folder and open in browser. If using
 
 ### Attributions
 The example image `examples/oblique_aerial_image.tif` is included by permission of its owner, me, [Jonathan Dandois](https://github.com/jondandois).
+
+Sea animal SVGs obtained from https://www.svgrepo.com/

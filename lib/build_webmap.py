@@ -20,6 +20,11 @@ example_css = os.path.join(os.getcwd(), 'examples', 'css', 'main.css')
 main_css = os.path.join(os.getcwd(), 'app', 'css', 'main.css')
 copyfile(example_css, main_css)
 
+# copy over assets
+example_assets = os.path.join(os.getcwd(), 'examples', 'assets')
+main_assets = os.path.join(os.getcwd(), 'app', 'assets')
+utils.copy_dir(example_assets, main_assets)
+
 # add any cdns
 cdns = ''
 cdns += js_snippets.leaflet_cdns()
@@ -39,8 +44,10 @@ if markers:
     marker_lng = utils.marker_x_to_lng(marker['x'], width)
     marker_lat = utils.marker_y_to_lat(marker['y'], width)
     scripts += js_snippets.leaflet_marker({
+      'icon': config['legend'][marker['type']]['icon'],
       'lat': marker_lat,
       'lng': marker_lng,
+
       'popup_text': "'%s:</br>x: %u, y:%u</br>'"%(marker['type'], marker['x'], marker['y'])
       })
 
